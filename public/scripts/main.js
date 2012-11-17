@@ -1,5 +1,13 @@
-define([], function () {
+define([
+  'Signup',
+  'vendor/ready',
+  'vendor/underscore'
+], function (Signup, ready) {
 
-  console.log('here!');
+  window.PattyAlert = {};
+
+  ready(function () {
+    PattyAlert.signup = new Signup('signup', 'signup');
+  });
 
 });
