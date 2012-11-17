@@ -21,7 +21,7 @@ define([
     this.init();
   }
 
-  _.extend(Signup.prototype, Validator, {
+  _.extend(Signup.prototype, {
 
     init: function () {
       this.views.signup.render();

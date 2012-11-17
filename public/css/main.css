@@ -1,8 +1,12 @@
-@import url(http://fonts.googleapis.com/css?family=Lilita+One|Fugaz+One);
+@import url(http://fonts.googleapis.com/css?family=Sanchez|Fugaz+One);
 
 body {
   color: #333;
   font-family: 'Helvetica Neue', 'Arial', sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: 'Sanchez';
 }
 
 .actor {
@@ -14,6 +18,8 @@ body {
 .status {
   background-position: center;
   left: 0px;
+  line-height: 1.6em;
+  font-size: 1.5em;
   padding: 4em 2em 5em;
   position: absolute;
   right: 0px;
@@ -25,22 +31,28 @@ body {
   }
   .status.upcoming {
     background: #f0f;
-    font-family: 'Lilita One';
   }
   .status.sighting {
     background-image: url(../img/eas.jpg);
-    font-family: 'Fugaz One';
   }
+    .status.sighting > h1 {
+      font-family: 'Fugaz One';
+    }
+
+.loader {
+  display: block;
+  margin: 4em auto;
+}
 
 .main {
   background: white;
   box-shadow: 0px -10px 10px rgba(0,0,0,.2);
-  margin: 0 -10px 0;
+  margin: 15em -8px 0;
   position: relative;
 }
 
 .signup-form {
-  font-size: 1.5em;
+  font-size: 1.2em;
 }
   .signup-form .phone {
     border: none;
@@ -57,9 +69,16 @@ body {
     background: #ccc;
     border: none;
     cursor: pointer;
-    font-size: inherit;
+    font-size: .6em;
     padding: .5em;
   }
     .signup-form.valid .submit {
       background: #00ff00;
     }
+
+.footer {
+  color: #ccc;
+  font-size: .8em;
+  margin-top: 2em;
+  text-align: center;
+}

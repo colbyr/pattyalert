@@ -1,8 +1,10 @@
 define([
+  'mixins/Validator',
   'utils/DOM',
   'utils/View',
-  'vendor/bean'
-], function (DOM, View, bean) {
+  'vendor/bean',
+  'vendor/bonzo'
+], function (Validator, DOM, View, bean, bonzo) {
 
   var TEMPLATE = 'signup_template';
 
@@ -12,6 +14,7 @@ define([
     this.submit = null;
     this.template_id = TEMPLATE;
     this.root = root;
+    this.form = null;
   }
 
   function submit(e) {
@@ -25,17 +28,16 @@ define([
 
   function keyupHandler(e) {
     if (this.validate(this.serialize())) {
-      console.log('valid');
-      bonzo(this.root).addClass('valid');
+      bonzo(this.form).addClass('valid');
     } else {
-      console.log('invalid');
-      bonzo(this.root).removeClass('valid');
+      bonzo(this.form).removeClass('valid');
     }
   }
 
-  _.extend(SignupView.prototype, View.prototype, {
+  _.extend(SignupView.prototype, View.prototype, Validator, {
 
     postRender: function () {
+      this.form = DOM.find(document.body, '.signup-form');
       this.number = DOM.find(this.root, '.phone');
       this.submit = DOM.find(this.root, '.submit');
 
