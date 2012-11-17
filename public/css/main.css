@@ -21,22 +21,23 @@ h1, h2, h3 {
   border-radius: 5px;
   margin-top: 1em;
   padding: .3em 2em 1em;
+  text-align: center;
 }
   .hero > h1 {
     font-size: 3em;
+    margin-bottom: .4em;
   }
   .hero.high {
     background-color: #ff0000;
+    color: #fff;
   }
-    .hero.high .level {
-      color: #fff;
-    }
   .hero.medium {
-    background-color: #00ff00;
+    background-color: #ffff00;
+    color: #333;
   }
-    .hero.medium .level {
-      color: #fff;
-    }
+  .hero.low {
+    color: #999;
+  }
 
 .status {
   background-position: center;
@@ -49,16 +50,16 @@ h1, h2, h3 {
   text-align: center;
   top: 0px;
 }
-  .status.no-luck {
-    background: #ccc;
+  .status.low {
+    background: #eee;
   }
-  .status.upcoming {
-    background: #f0f;
+  .status.medium {
+    background: #eee;
   }
-  .status.sighting {
+  .status.high {
     background-image: url(../img/eas.jpg);
   }
-    .status.sighting > h1 {
+    .status.high > h1 {
       font-family: 'Fugaz One';
     }
 
