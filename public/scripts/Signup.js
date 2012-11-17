@@ -20,7 +20,7 @@ define([
 
   function submit(e) {
     e.preventDefault();
-    if (this.validate()) {
+    if (this.validate(this.serialize())) {
       console.log('submitted to ' + this.endpoint, this.serialize());
     } else {
       console.log('invalid');
@@ -30,11 +30,12 @@ define([
   _.extend(Signup.prototype, Validator, {
 
     rules: {
+      'phone': /^1?[0-9]{10}$/
     },
 
     serialize: function () {
       return {
-        phone_number: this.number.value
+        phone: this.number.value.replace(/[\-\(\)\s]/g, '')
       };
     }
 

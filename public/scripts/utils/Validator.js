@@ -11,6 +11,8 @@ define([
     validate: function (data) {
       if (!this.rules) {
         throw new Error('Validator.validate: rules object not found');
+      } else if (!data) {
+        throw new Error('Validator.validate: no data specified');
       }
 
       var valid = true;
