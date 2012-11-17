@@ -1,7 +1,5 @@
 require 'sinatra'
-require 'mongo'
-
-db = Mongo::Connection.new.db("patty")
+require './models/enthusiast.rb'
 
 get '/' do
   erb :index
