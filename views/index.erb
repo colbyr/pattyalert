@@ -1,62 +1,55 @@
 <html>
 
-  <head>
+<head>
 
-    <title>Patty Alert</title>
+  <title>Patty Alert</title>
 
-    <link href="css/grid.css" rel="stylesheet" type="text/css" />
-    <link href="css/main.css" rel="stylesheet" type="text/css" />
+  <link href="css/grid.css" rel="stylesheet" type="text/css" />
+  <link href="css/main.css" rel="stylesheet" type="text/css" />
 
-    <script data-main="scripts/main" src="scripts/vendor/require.js"></script>
+  <script data-main="scripts/main" src="scripts/vendor/require.js"></script>
 
-  </head>
+</head>
 
-  <body>
+<body>
 
-    <div class="status sighting"
-      data-0="opacity:1;"
-      data-200="opacity:0;">
-      <h1>EAT ALL THE CHICKEN PATTIES</h1>
-    </div>
+  <div class="status sighting"
+    data-0="opacity:1;"
+    data-200="opacity:0;">
+    <h1>EAT ALL THE CHICKEN PATTIES</h1>
+  </div>
 
-    <div class="main"
-      data-0="margin-top: 13em;"
-      data-200="margin-top: 0em;">
-      <div class="container">
-        <div class="header row">
-          <div class="col-12 header">
-            <h1>Patty Alert</h1>
-            <p>The marist college chicken pattie alert system</p>
-          </div>
-
-          <div class="col-8">
-            <h2>Never miss Chicken Patty Day again!</h2>
-            <form class="signup" id="signup">
-              <span class="actor">Me:</span>
-              <br />
-              <span>Can I ha' yo' number? I'll text you when there's chicken patties!</span>
-              <br />
-              <span class="actor">You:</span>
-              <br />
-              <span>Sure, it's</span>
-              <input class="phone" name="phone" placeholder="000-000-0000" type="text" />
-              <input class="submit" type="submit" value="Hit me up!" />
-            </form>
-          </div>
-
-          <div class="col-4">
-            <h2>But seriously...</h2>
-            <p>What's the deal here?</p>
-            <p>Look we love Chicken Patties... they're like the bee's knees. Unfortunately unless you go to the cafeteria every day, it's hard to catch Chicken Patty day.</p>
-            <p>We monitor the cafeteria website and sightings in the wild to keep you informed.</p>
-          </div>
+  <div class="main"
+    data-0="margin-top: 13em;"
+    data-200="margin-top: 0em;">
+    <div class="container">
+      <div class="header row">
+        <div class="col-12 header">
+          <h1>Patty Alert</h1>
+          <p>The marist college chicken pattie alert system</p>
         </div>
 
-        <div class="footer row">
+        <div id="signup" class="col-8">
+          <img class="loader" />
+        </div>
+
+        <div class="col-4">
+          <h2>But seriously...</h2>
+          <p>What's the deal here?</p>
+          <p>Look we love Chicken Patties... they're like the bee's knees. Unfortunately unless you go to the cafeteria every day, it's hard to catch Chicken Patty day.</p>
+          <p>We monitor the cafeteria website and sightings in the wild to keep you informed.</p>
         </div>
       </div>
-    </div>
 
-  </body>
+      <div class="footer row">
+      </div>
+    </div>
+  </div>
+
+<!-- templates -->
+<%= erb(:signup, :layout => false) %>
+<%= erb(:confirm, :layout => false) %>
+
+</body>
 
 </html>

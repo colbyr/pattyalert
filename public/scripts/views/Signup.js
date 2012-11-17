@@ -1,24 +1,17 @@
 define([
-  'utils/$',
   'utils/DOM',
-  'utils/Validator',
-  'vendor/bean',
-  'vendor/bonzo',
-  'vendor/underscore'
-], function ($, DOM, Validator, bean, bonzo) {
+  'utils/View',
+  'vendor/bean'
+], function (DOM, View, bean) {
 
-  function Signup(root_selector, endpoint) {
-    this.endpoint = endpoint;
-    this.root = $(root_selector);
-    if (!this.root) {
-      throw new Error('Signup.root is ' + this.root);
-    }
+  var TEMPLATE = 'signup_template';
 
-    this.number = DOM.find(this.root, '.phone');
-    this.submit = DOM.find(this.root, '.submit');
-
-    bean.on(this.root, 'submit', _(submit).bind(this));
-    bean.on(this.number, 'keyup', _(keyupHandler).bind(this));
+  function SignupView(root) {
+    this.inited = false;
+    this.number = null;
+    this.submit = null;
+    this.template_id = TEMPLATE;
+    this.root = root;
   }
 
   function submit(e) {
@@ -40,7 +33,15 @@ define([
     }
   }
 
-  _.extend(Signup.prototype, Validator, {
+  _.extend(SignupView.prototype, View.prototype, {
+
+    postRender: function () {
+      this.number = DOM.find(this.root, '.phone');
+      this.submit = DOM.find(this.root, '.submit');
+
+      bean.on(this.root, 'submit', _(submit).bind(this));
+      bean.on(this.number, 'keyup', _(keyupHandler).bind(this));
+    },
 
     rules: {
       'phone': /^1?[0-9]{10}$/
@@ -54,6 +55,5 @@ define([
 
   });
 
-  return Signup;
-
+  return SignupView;
 });

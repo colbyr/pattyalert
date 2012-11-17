@@ -39,10 +39,10 @@ body {
   position: relative;
 }
 
-.signup {
+.signup-form {
   font-size: 1.5em;
 }
-  .signup .phone {
+  .signup-form .phone {
     border: none;
     border-bottom: 1px solid;
     font-size: inherit;
@@ -50,16 +50,16 @@ body {
     text-align: center;
     width: 8em;
   }
-    .signup.valid .phone {
+    .signup-form.valid .phone {
       border-color: #00ff00;
     }
-  .signup .submit {
+  .signup-form .submit {
     background: #ccc;
     border: none;
     cursor: pointer;
     font-size: inherit;
     padding: .5em;
   }
-    .signup.valid .submit {
+    .signup-form.valid .submit {
       background: #00ff00;
     }

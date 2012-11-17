@@ -1,5 +1,5 @@
 define([
-  'Signup',
+  'controllers/Signup',
   'vendor/ready',
   'vendor/skrollr',
   'vendor/underscore'
