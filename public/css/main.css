@@ -7,6 +7,7 @@ body {
 
 h1, h2, h3 {
   font-family: 'Sanchez';
+  font-weight: normal;
 }
 
 .actor {
@@ -14,6 +15,28 @@ h1, h2, h3 {
   font-size: .6em;
   font-weight: bold;
 }
+
+.hero {
+  background: #eee;
+  border-radius: 5px;
+  margin-top: 1em;
+  padding: .3em 2em 1em;
+}
+  .hero > h1 {
+    font-size: 3em;
+  }
+  .hero.high {
+    background-color: #ff0000;
+  }
+    .hero.high .level {
+      color: #fff;
+    }
+  .hero.medium {
+    background-color: #00ff00;
+  }
+    .hero.medium .level {
+      color: #fff;
+    }
 
 .status {
   background-position: center;

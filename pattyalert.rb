@@ -4,5 +4,7 @@ require 'mongo'
 db = Mongo::Connection.new.db("patty")
 
 get '/' do
-  erb :index
+  @level = params[:level]
+  puts @level
+  erb(:index)
 end
