@@ -3,8 +3,9 @@ define([
   'utils/DOM',
   'utils/Validator',
   'vendor/bean',
+  'vendor/bonzo',
   'vendor/underscore'
-], function ($, DOM, Validator, bean) {
+], function ($, DOM, Validator, bean, bonzo) {
 
   function Signup(root_selector, endpoint) {
     this.endpoint = endpoint;
@@ -14,8 +15,10 @@ define([
     }
 
     this.number = DOM.find(this.root, '.phone');
+    this.submit = DOM.find(this.root, '.submit');
 
     bean.on(this.root, 'submit', _(submit).bind(this));
+    bean.on(this.number, 'keyup', _(keyupHandler).bind(this));
   }
 
   function submit(e) {
@@ -24,6 +27,16 @@ define([
       console.log('submitted to ' + this.endpoint, this.serialize());
     } else {
       console.log('invalid');
+    }
+  }
+
+  function keyupHandler(e) {
+    if (this.validate(this.serialize())) {
+      console.log('valid');
+      bonzo(this.root).addClass('valid');
+    } else {
+      console.log('invalid');
+      bonzo(this.root).removeClass('valid');
     }
   }
 

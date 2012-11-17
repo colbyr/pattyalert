@@ -4,9 +4,9 @@
   * License MIT
   */
 (function (name, definition, context) {
-  if (typeof module != 'undefined' && module.exports) module.exports = definition()
-  else if (typeof context['define'] == 'function' && context['define']['amd']) define(name, definition)
-  else context[name] = definition()
+  if (typeof module != 'undefined' && module.exports) module.exports = definition(name, context);
+  else if (typeof define == 'function' && typeof define.amd  == 'object') define(definition);
+  else context[name] = definition(name, context);
 })('bonzo', function() {
   var win = window
     , doc = win.document
@@ -1123,4 +1123,4 @@
     }
 
   return bonzo
-}, this); // the only line we care about using a semi-colon. placed here for concatenation tools
+}, window); // the only line we care about using a semi-colon. placed here for concatenation tools

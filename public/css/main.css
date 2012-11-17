@@ -1,12 +1,18 @@
 @import url(http://fonts.googleapis.com/css?family=Lilita+One|Fugaz+One);
 
 body {
-  background-position: center;
   color: #333;
   font-family: 'Helvetica Neue', 'Arial', sans-serif;
 }
 
+.actor {
+  color: #ccc;
+  font-size: .6em;
+  font-weight: bold;
+}
+
 .status {
+  background-position: center;
   left: 0px;
   padding: 4em 2em 5em;
   position: absolute;
@@ -19,11 +25,11 @@ body {
   }
   .status.upcoming {
     background: #f0f;
-    font-family: 'Lilita One', cursive;
+    font-family: 'Lilita One';
   }
   .status.sighting {
     background-image: url(../img/eas.jpg);
-    font-family: 'Fugaz One', cursive;
+    font-family: 'Fugaz One';
   }
 
 .main {
@@ -32,3 +38,28 @@ body {
   margin: 0 -10px 0;
   position: relative;
 }
+
+.signup {
+  font-size: 1.5em;
+}
+  .signup .phone {
+    border: none;
+    border-bottom: 1px solid;
+    font-size: inherit;
+    outline: none;
+    text-align: center;
+    width: 8em;
+  }
+    .signup.valid .phone {
+      border-color: #00ff00;
+    }
+  .signup .submit {
+    background: #ccc;
+    border: none;
+    cursor: pointer;
+    font-size: inherit;
+    padding: .5em;
+  }
+    .signup.valid .submit {
+      background: #00ff00;
+    }
