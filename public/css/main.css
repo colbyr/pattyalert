@@ -76,12 +76,13 @@ h1, h2, h3 {
 }
 
 .signup-form {
-  font-size: 1.2em;
+  font-size: 1.5em;
+  text-align: center;
 }
   .signup-form .phone {
     border: none;
     border-bottom: 1px solid;
-    font-size: inherit;
+    font-size: 1.5em;
     outline: none;
     text-align: center;
     width: 8em;
@@ -93,7 +94,7 @@ h1, h2, h3 {
     background: #ccc;
     border: none;
     cursor: pointer;
-    font-size: .6em;
+    font-size: 1em;
     padding: .5em;
   }
     .signup-form.valid .submit {
