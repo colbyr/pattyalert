@@ -1,9 +1,6 @@
 from urllib2 import urlopen
 from bs4 import BeautifulSoup
 import re
-
-def get_html(url):
-	return urlopen(url).read()
 	
 def expand_meal_abbreviation(meal_abbreviation):
   if meal_abbreviation == 'lun':
@@ -15,8 +12,7 @@ def expand_meal_abbreviation(meal_abbreviation):
   return meal
 	
 def search(food):
-  url = 'http://maristdining.com/dining/WeeklyMenu.htm';
-  soup = BeautifulSoup(urlopen(url))
+  soup = BeautifulSoup(urlopen('http://maristdining.com/dining/WeeklyMenu.htm'))
   offerings = [] 
   for element in soup.find_all('span', text=food):
     parent = element.parent
@@ -30,4 +26,4 @@ def main():
   print search('Chicken Patty Sandwich')
     
 if __name__ == '__main__':
-	main()
+  main()
