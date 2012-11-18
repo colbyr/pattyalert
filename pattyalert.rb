@@ -24,10 +24,15 @@ end
 
 post '/sign_up' do
   number = params[:number]
-
   enthusiast = Enthusiast.new({"number" => number})
-
   saved_enthusiast = enthusiast.save
+  enthusiast.notify("Thanks for signing up! We'll let you know when there are chicken patties.")
+  enthusiast.attributes.to_json
+end
 
+post '/sight' do
+  sighting = Sighting.new(params)
+  sighting.save
+  Enthusiast.notify_all('Hey! Chicken patties in the cafe! Best hurry before they are all gone!')
   enthusiast.attributes.to_json
 end

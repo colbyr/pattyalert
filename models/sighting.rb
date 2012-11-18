@@ -9,6 +9,10 @@ class Sighting
     @attributes = attributes
   end
 
+  def attributes
+    @attributes
+  end
+
   def day
     @attributes["day"]
   end
