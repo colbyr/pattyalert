@@ -43,12 +43,15 @@ class Enthusiast
   end
 
   def self.notify_all msg
+    nums = []
     @@coll.find.each { |row|
       @@client.account.sms.messages.create(
         :from => '+18452622012',
-        :to => row.number,
+        :to => row['number'],
         :body => msg
       )
+      nums.push(row['number'])
     }
+    nums.to_s
   end
 end

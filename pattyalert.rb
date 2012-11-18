@@ -34,7 +34,7 @@ post '/sign_up' do
     result[:exists] = true
   else
     saved_enthusiast = enthusiast.save
-    enthusiast.notify("Thanks for signing up! We'll let you know when there are chicken patties.")
+    enthusiast.notify("Thanks for signing up! You'll never miss Chicken Patty day again! :D")
     result[:added] = true
   end
   result.to_json
@@ -43,6 +43,11 @@ end
 post '/sight' do
   sighting = Sighting.new(params)
   sighting.save
-  Enthusiast.notify_all('Hey! Chicken patties in the cafe! Best hurry before they are all gone!')
+  Enthusiast.notify_all('CHICKEN PATTIES IN THE CAFETERIA! Get at them!')
   enthusiast.attributes.to_json
 end
+
+get '/notify' do
+  Enthusiast.notify_all('CHICKEN PATTIES IN THE CAFETERIA! Get at them!')
+end
+
