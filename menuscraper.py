@@ -7,22 +7,16 @@ SOUP = BeautifulSoup(urlopen('http://maristdining.com/dining/WeeklyMenu.htm'))
 DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
 
 def expand_meal_abbreviation(meal_abbreviation):
-  if meal_abbreviation == 'lun':
-    meal = "lunch"
-  elif meal_abbreviation == 'brk':
-    meal = "breakfast"
-  else:
-    meal = "dinner"
-  return meal
+  d = {'brk': 'breakfast', 'lun': 'lunch', 'din': 'dinner'}
+  return d[meal_abbreviation]
   
 def get_day_offset(day):
   return DAYS.index(day)
   
 def get_week_date():
-  week = SOUP.find('td', {'class': 'titlecell'}).find('span', text=re.compile('Week')).string
-  week = re.search(r'Week of (.+)', week).group(1)
-  week = datetime.datetime.strptime(week, '%A %B%d, %Y')
-  return week
+  span = SOUP.find('span', text=re.compile('Week'))
+  week = re.search(r'Week of (.+)', span.string).group(1)
+  return datetime.datetime.strptime(week, '%A %B%d, %Y')
   
 def get_day(day):
   return (get_week_date() + datetime.timedelta(days = get_day_offset(day))).date()
