@@ -1,7 +1,9 @@
-from urllib2 import urlopen
+from urllib2 import urlopen, Request
+from urllib import urlencode
 from bs4 import BeautifulSoup
 import datetime
 import re
+import urllib
 
 SOUP = BeautifulSoup(urlopen('http://maristdining.com/dining/WeeklyMenu.htm'))
 DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
@@ -31,8 +33,15 @@ def search(food):
     offerings.append({'date': str(get_day(str(parent['id']))), 'day': str(parent['id']), 'meal': meal})     
   return offerings
   
+def post(offerings):
+  for offering in offerings:
+    data = urlencode(offering)
+    request = Request('link', data)
+    response = urlopen(request)
+    content = response.read()
+
 def main():
-  print search('Chicken Patty Sandwich')
+  post(search('Chicken Patty Sandwich'))
     
 if __name__ == '__main__':
   main()
