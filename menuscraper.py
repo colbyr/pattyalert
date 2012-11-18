@@ -11,15 +11,15 @@ def expand_meal_abbreviation(meal_abbreviation):
   return d[meal_abbreviation]
   
 def get_day_offset(day):
-  return DAYS.index(day)
+  return datetime.timedelta(days = DAYS.index(day))
   
-def get_week_date():
+def get_week():
   span = SOUP.find('span', text=re.compile('Week'))
   week = re.search(r'Week of (.+)', span.string).group(1)
   return datetime.datetime.strptime(week, '%A %B%d, %Y')
   
 def get_day(day):
-  return (get_week_date() + datetime.timedelta(days = get_day_offset(day))).date()
+  return (get_week() + get_day_offset(day)).date()
   	
 def search(food):
   offerings = [] 
