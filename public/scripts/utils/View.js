@@ -5,6 +5,7 @@ define([
 ], function ($, ready) {
 
   function View(root, template_id) {
+    this.events = {};
     this.inited = false;
     this.root = root;
     this.template = null;
@@ -12,6 +13,24 @@ define([
   }
 
   _.extend(View.prototype, {
+
+    bind: function (type, callback) {
+      if (!this.events.hasOwnProperty(type)) {
+        this.events[type] = [];
+      }
+      this.events[type].push(callback);
+      return this;
+    },
+
+    fire: function (type) {
+      if (this.events.hasOwnProperty(type)) {
+        _(this.events[type]).each(function (callback) {
+          callback.call();
+        });
+      } else {
+        throw new Error('View.fire: event "' + type + '" not defined');
+      }
+    },
 
     init: function () {
       this.template = _.template(
