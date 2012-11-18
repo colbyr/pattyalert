@@ -41,7 +41,8 @@ def post(offerings):
     content = response.read()
 
 def main():
-  post(search('Chicken Patty Sandwich'))
+  # post(search('Chicken Patty Sandwich'))
+  print(search('Chicken Patty Sandwich'))
     
 if __name__ == '__main__':
   main()
