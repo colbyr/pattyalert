@@ -21,8 +21,19 @@ define([
 
   function submit(e) {
     e.preventDefault();
-    if (this.validate(this.serialize())) {
-      console.log('submitted to ' + this.endpoint, this.serialize());
+    var data = this.serialize();
+    if (this.validate(data)) {
+      reqwest({
+        url: '/sign_up',
+        method: 'post',
+        type: 'json',
+        data: {
+          number: this.format(data.phone)
+        },
+        success: function (resp) {
+          console.log(resp);
+        }
+      });
       this.fire('done');
     } else {
       console.log('invalid');
@@ -38,6 +49,14 @@ define([
   }
 
   _.extend(SignupView.prototype, View.prototype, Validator, {
+
+    format: function (number) {
+      var number = '' + number;
+      if (number.charAt(0) !== '1') {
+        number = '1' + number;
+      }
+      return '+' + number;
+    },
 
     postRender: function () {
       this.form = DOM.find(document.body, '.signup-form');

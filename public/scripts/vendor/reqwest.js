@@ -5,9 +5,9 @@
   * license MIT
   */
 !function (name, definition) {
-  if (typeof module != 'undefined') module.exports = definition()
-  else if (typeof define == 'function' && define.amd) define(name, definition)
-  else this[name] = definition()
+  if (typeof module != 'undefined' && module.exports) module.exports = definition(name, context);
+  else if (typeof define == 'function' && typeof define.amd  == 'object') define(definition);
+  else context[name] = definition(name, context);
 }('reqwest', function () {
 
   var win = window
@@ -190,21 +190,21 @@
     }
 
     function success(resp) {
-      var r = resp.responseText
+      var r = resp.responseText;
       if (r) {
         switch (type) {
         case 'json':
           try {
-            resp = win.JSON ? win.JSON.parse(r) : eval('(' + r + ')')
+            resp = win.JSON ? win.JSON.parse(r) : eval('(' + r + ')');
           } catch (err) {
-            return error(resp, 'Could not parse JSON in response', err)
+            return error(resp, 'Could not parse JSON in response', err);
           }
           break;
         case 'js':
-          resp = eval(r)
+          resp = eval(r);
           break;
         case 'html':
-          resp = r
+          resp = r;
           break;
         case 'xml':
           resp = resp.responseXML;
