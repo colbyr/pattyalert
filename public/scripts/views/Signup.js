@@ -3,8 +3,9 @@ define([
   'utils/DOM',
   'utils/View',
   'vendor/bean',
-  'vendor/bonzo'
-], function (Validator, DOM, View, bean, bonzo) {
+  'vendor/bonzo',
+  'vendor/reqwest'
+], function (Validator, DOM, View, bean, bonzo, reqwest) {
 
   var TEMPLATE = 'signup_template';
 
@@ -20,6 +21,7 @@ define([
   function submit(e) {
     e.preventDefault();
     if (this.validate(this.serialize())) {
+
       console.log('submitted to ' + this.endpoint, this.serialize());
     } else {
       console.log('invalid');

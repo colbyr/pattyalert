@@ -1,8 +1,9 @@
 define([
+  'views/Done',
   'views/Signup',
   'utils/$',
   'vendor/underscore'
-], function (SignupView, $) {
+], function (DoneView, SignupView, $) {
 
   function Signup(root_selector, endpoint) {
     this.endpoint = endpoint;
@@ -11,11 +12,10 @@ define([
       throw new Error('Signup.root is ' + this.root);
     }
 
-    this.views = {
-      signup: new SignupView(this.root),
-      confirm: null,
-      done: null
-    };
+    this.views = [
+      new SignupView(this.root),
+      new View(this.root, 'done_template');
+    ];
 
     // init
     this.init();
@@ -24,7 +24,11 @@ define([
   _.extend(Signup.prototype, {
 
     init: function () {
-      this.views.signup.render();
+      this.views.shift().bind('done', _(this.next).bind(this)).render();
+    },
+
+    next: function () {
+      this.views.shift().render();
     }
 
   });
