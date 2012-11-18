@@ -11,6 +11,7 @@ auth_token = ENV['TWILIO_TOKEN']
 @@client = Twilio::REST::Client.new account_sid, auth_token
 
 class Enthusiast
+
   def initialize attributes
     @attributes = attributes
   end
@@ -23,8 +24,14 @@ class Enthusiast
     @attributes
   end
 
+  def exists
+    @@coll.find('number' => self.number).to_a.length > 0
+  end
+
   def save
-    @@coll.insert(@attributes)
+    if !self.exists
+      @@coll.insert(@attributes)
+    end
   end
 
   def notify msg

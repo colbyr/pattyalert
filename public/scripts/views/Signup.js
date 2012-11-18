@@ -17,10 +17,15 @@ define([
     this.template_id = TEMPLATE;
     this.root = root;
     this.form = null;
+
+    if (!this.root) {
+      throw new Error('SignupView.root is not defined');
+    }
   }
 
   function submit(e) {
     e.preventDefault();
+    var self = this;
     var data = this.serialize();
     if (this.validate(data)) {
       reqwest({
@@ -33,9 +38,14 @@ define([
         success: function (resp) {
           console.log(resp);
           localStorage.setItem('signedUp', true);
+          if (resp.exists) {
+            self.fire('next', 'complete');
+          } else {
+            self.fire('next', 'done');
+          }
         }
       });
-      this.fire('next');
+      this.fire('next', 'loader');
     } else {
       console.log('invalid');
     }

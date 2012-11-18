@@ -24,10 +24,20 @@ end
 
 post '/sign_up' do
   number = params[:number]
+  result = {
+    :exists => false,
+    :added => false
+  }
   enthusiast = Enthusiast.new({"number" => number})
-  saved_enthusiast = enthusiast.save
-  enthusiast.notify("Thanks for signing up! We'll let you know when there are chicken patties.")
-  enthusiast.attributes.to_json
+
+  if enthusiast.exists
+    result[:exists] = true
+  else
+    saved_enthusiast = enthusiast.save
+    enthusiast.notify("Thanks for signing up! We'll let you know when there are chicken patties.")
+    result[:added] = true
+  end
+  result.to_json
 end
 
 post '/sight' do

@@ -11,11 +11,16 @@ define([
     this.inited = false;
     this.template_id = TEMPLATE;
     this.link = null;
+    this.root = root;
+
+    if (!this.root) {
+      throw new Error('View.root is not defined');
+    }
   }
 
   function next(e) {
     e.preventDefault();
-    this.fire('next');
+    this.fire('next', 'signup');
   }
 
   _.extend(CompleteView.prototype, View.prototype, {

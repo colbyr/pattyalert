@@ -10,6 +10,10 @@ define([
     this.root = root;
     this.template = null;
     this.template_id = template_id;
+
+    if (!this.root) {
+      throw new Error('View.root is not defined');
+    }
   }
 
   _.extend(View.prototype, {
@@ -24,8 +28,9 @@ define([
 
     fire: function (type) {
       if (this.events.hasOwnProperty(type)) {
+        var args = Array.prototype.slice.call(arguments, 1);
         _(this.events[type]).each(function (callback) {
-          callback.call();
+          callback.apply(null, args);
         });
       } else {
         throw new Error('View.fire: event "' + type + '" not defined');
