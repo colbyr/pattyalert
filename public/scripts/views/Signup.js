@@ -32,9 +32,10 @@ define([
         },
         success: function (resp) {
           console.log(resp);
+          localStorage.setItem('signedUp', true);
         }
       });
-      this.fire('done');
+      this.fire('next');
     } else {
       console.log('invalid');
     }

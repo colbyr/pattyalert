@@ -1,0 +1,31 @@
+define([
+  'utils/DOM',
+  'utils/View',
+  'vendor/bean'
+], function (DOM, View, bean) {
+
+  var TEMPLATE = 'signedup_template';
+
+  function CompleteView(root) {
+    this.events = {};
+    this.inited = false;
+    this.template_id = TEMPLATE;
+    this.link = null;
+  }
+
+  function next(e) {
+    e.preventDefault();
+    this.fire('next');
+  }
+
+  _.extend(CompleteView.prototype, View.prototype, {
+
+    postRender: function () {
+      this.link = DOM.find(this.root, '.new_number');
+      bean.on(this.link, 'click', _(next).bind(this));
+    },
+
+  });
+
+  return CompleteView;
+});

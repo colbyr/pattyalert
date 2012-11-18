@@ -1,9 +1,10 @@
 define([
+  'views/Complete',
   'views/Signup',
   'utils/View',
   'utils/$',
   'vendor/underscore'
-], function (SignupView, View, $) {
+], function (Complete, SignupView, View, $) {
 
   function Signup(root_selector, endpoint) {
     this.endpoint = endpoint;
@@ -12,10 +13,18 @@ define([
       throw new Error('Signup.root is ' + this.root);
     }
 
-    this.views = [
-      new SignupView(this.root),
-      new View(this.root, 'done_template')
-    ];
+    if (this.isSignedUp()) {
+      this.views = [
+        new CompleteView(this.root),
+        new SignupView(this.root),
+        new View(this.root, 'done_template')
+      ];
+    } else {
+      this.views = [
+        new SignupView(this.root),
+        new View(this.root, 'done_template')
+      ];
+    }
 
     // init
     this.init();
@@ -23,9 +32,13 @@ define([
 
   _.extend(Signup.prototype, {
 
+    isSignedUp: function () {
+      return localStorage.getItem('signedUp') === 'true';
+    },
+
     init: function () {
       this.current = this.views.shift();
-      this.current.bind('done', _(this.next).bind(this)).render();
+      this.current.bind('next', _(this.next).bind(this)).render();
     },
 
     next: function () {
