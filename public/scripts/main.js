@@ -1,5 +1,15 @@
-define([], function () {
+define([
+  'controllers/Signup',
+  'vendor/ready',
+  'vendor/skrollr',
+  'vendor/underscore'
+], function (Signup, ready, skrollr) {
 
-  console.log('here!');
+  window.PattyAlert = {};
+
+  ready(function () {
+    PattyAlert.signup = new Signup('signup', 'signup');
+    PattyAlert.skrollr = skrollr.init();
+  });
 
 });

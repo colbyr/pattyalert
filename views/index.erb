@@ -1,30 +1,54 @@
 <html>
 
-  <head>
+<head>
 
-    <title>Patty Alert</title>
+  <title>Patty Alert</title>
 
-    <link href="css/grid.css" rel="stylesheet" type="text/css" />
-    <link href="css/main.css" rel="stylesheet" type="text/css" />
+  <link href="css/grid.css" rel="stylesheet" type="text/css" />
+  <link href="css/main.css" rel="stylesheet" type="text/css" />
 
-    <script data-main="scripts/main" src="scripts/vendor/require.js"></script>
+  <script data-main="scripts/main" src="scripts/vendor/require.js"></script>
 
-  </head>
+</head>
 
-  <body class="container">
+<body>
 
-    <div class="header row">
+  <div class="status <%= @level %>">
+    <h1
+      data-0="font-size:2em;color:rgba(0,0,0,1);"
+      data-200="font-size: 0em;color:rgba(0,0,0,0);">
+      <%= @status %>
+    </h1>
+  </div>
 
-      <div class="col-12 header">
-        <h1 >Patty Alert</h1>
+  <div class="main"
+    data-0="margin-top: 17em;"
+    data-200="margin-top: 0em;">
+    <div class="container">
+      <div class="header row">
+        <div class="col-12 header">
+          <h1>Patty Alert Level:</h1>
+          <div class="hero <%= @level %>">
+            <h1><span class="level"><%= @level.capitalize %></span></h1>
+            <p><%= @message %></p>
+          </div>
+        </div>
+
+        <div id="signup" class="col-12">
+          <img class="loader" src="img/loader.gif" />
+        </div>
       </div>
 
+      <div class="footer row">
+        <p class="col-12">brought to you by colby, dan & justin</p>
+      </div>
     </div>
+  </div>
 
-    <div class="footer">
-      <p>You're welcome.</p>
-    </div>
+<!-- templates -->
+<%= erb(:signup, :layout => false) %>
+<%= erb(:confirm, :layout => false) %>
 
-  </body>
+</body>
 
 </html>
