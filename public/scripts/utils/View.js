@@ -19,11 +19,12 @@ define([
         this.events[type] = [];
       }
       this.events[type].push(callback);
+      return this;
     },
 
     fire: function (type) {
       if (this.events.hasOwnProperty(type)) {
-        _(this.events[type]).each(function () {
+        _(this.events[type]).each(function (callback) {
           callback.call();
         });
       } else {

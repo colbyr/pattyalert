@@ -10,6 +10,7 @@ define([
   var TEMPLATE = 'signup_template';
 
   function SignupView(root) {
+    this.events = {};
     this.inited = false;
     this.number = null;
     this.submit = null;
@@ -21,8 +22,8 @@ define([
   function submit(e) {
     e.preventDefault();
     if (this.validate(this.serialize())) {
-
       console.log('submitted to ' + this.endpoint, this.serialize());
+      this.fire('done');
     } else {
       console.log('invalid');
     }
