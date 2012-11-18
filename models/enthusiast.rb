@@ -14,6 +14,10 @@ class Enthusiast
     @attributes["number"]
   end
 
+  def attributes
+    @attributes
+  end
+
   def save
     @@coll.insert(@attributes)
   end

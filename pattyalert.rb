@@ -1,5 +1,6 @@
 require 'sinatra'
 require './models/enthusiast.rb'
+require 'json'
 
 levels = ['low', 'medium', 'high']
 messages = {
@@ -19,4 +20,14 @@ get '/' do
   @status = statuses[@level]
   @message = messages[@level]
   erb :index
+end
+
+post '/sign_up' do
+  number = params[:number]
+
+  enthusiast = Enthusiast.new({"number" => number})
+
+  saved_enthusiast = enthusiast.save
+
+  enthusiast.attributes.to_json
 end
