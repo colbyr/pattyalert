@@ -1,8 +1,9 @@
 require 'mongo'
 require 'json'
 require 'twilio-ruby'
+require './models/mongo_connection.rb'
 
-db = Mongo::Connection.new.db("pattyalert") # =( Sorry Alan
+db = MongoConnection.get_connection
 @@coll = db.collection("enthusiasts")
 
 account_sid = ENV['TWILIO_SID']

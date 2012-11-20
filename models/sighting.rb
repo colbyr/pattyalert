@@ -1,7 +1,8 @@
 require 'mongo'
 require 'json'
+require './models/mongo_connection.rb'
 
-db = Mongo::Connection.new.db("pattyalert")
+db = MongoConnection.get_connection
 @@coll = db.collection("sightings")
 
 class Sighting
