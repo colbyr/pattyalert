@@ -1,5 +1,6 @@
 require 'sinatra'
 require './models/enthusiast.rb'
+require './workers/mass_notifier.rb'
 require 'json'
 
 levels = ['low', 'medium', 'high']
@@ -48,6 +49,7 @@ post '/sight' do
 end
 
 get '/notify' do
-  Enthusiast.notify_all('CHICKEN PATTIES IN THE CAFETERIA! Get at them!')
+  msg = 'CHICKEN PATTIES IN THE CAFETERIA! Get at them!'
+  Notifier.perform_async msg
 end
 
